@@ -98,3 +98,72 @@ void Deck::Imprimir()
 		pCarta = pCarta->siguienteCarta;
 	}
 }
+
+// ****************** Jugador ***********************************
+Jugador::Jugador(string nombre)
+{
+	this->nombre = nombre;
+	sumaCartas = 0;
+	cantidadGanadas = 0;
+	siguienteJugador = nullptr;
+}
+
+void Jugador::Imprimir()
+{
+	cout << "<Jugador nombre=" << nombre
+		<< " sumaCarta=" << sumaCartas
+		<< " cantidadPartidasGanadas=" << cantidadGanadas
+		<< " />" << endl;
+}
+
+// ****************** Mesa **************************************
+Mesa::Mesa()
+{
+	cantidadJugadores = 0;
+	primerJugador = nullptr;
+	ultimoJugador = nullptr;
+}
+void Mesa::AgregarJugador(string nombre)
+{
+	Jugador* nuevoJugador = new Jugador(nombre);
+	
+	if (cantidadJugadores == 0)
+	{
+		primerJugador = nuevoJugador;
+		ultimoJugador = nuevoJugador;
+	}
+	else
+	{
+		ultimoJugador->siguienteJugador = nuevoJugador;
+		ultimoJugador = nuevoJugador;
+	}
+
+	cantidadJugadores++;
+}
+
+void Mesa::Imprimir()
+{
+	cout << "<Mesa>" << endl;
+	Jugador* pJugador = primerJugador;
+	while (pJugador != nullptr)
+	{
+		pJugador->Imprimir();
+		pJugador = pJugador->siguienteJugador;
+	}
+	cout << "</Mesa>" << endl;
+}
+
+// ****************** Juego *************************************
+Juego::Juego()
+{
+	mesa = new Mesa();
+}
+void Juego::AgregarJugador()
+{
+	cout << "Ingrese el nombre del nuevo Jugador: ";
+
+	string nombre;
+	cin >> nombre;
+	mesa->AgregarJugador(nombre);
+	mesa->Imprimir();
+}
