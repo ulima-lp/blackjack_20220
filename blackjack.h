@@ -41,9 +41,16 @@ public:
 	int cantidadJugadores;
 	Jugador* primerJugador;
 	Jugador* ultimoJugador;
+	int sumaCartasCrupier;
 	Mesa();
 	void AgregarJugador(string nombre);
+	void RepartirCarta(Deck* deck);
+	void RepartirCartaCrupier(Deck* deck);
+	void RepartirCartasJugador(Deck* deck);
+	void RepartirCartasCrupier(Deck* deck);
 	void Imprimir();
+	void VerificarGanadores();
+	Jugador* ObtenerJugadorMasGanador();
 };
 
 class Juego
@@ -52,4 +59,7 @@ class Juego
 public:
 	Juego();
 	void AgregarJugador();
+	void Iniciar();
+	void MostrarJugadorMayor();
+	void MostrarMenu();
 };
