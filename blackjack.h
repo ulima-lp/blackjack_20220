@@ -18,6 +18,7 @@ public:
 	int cantidad;
 	Carta* primeraCarta;
 	Deck();
+	Deck(int numeroBarajas);
 	void AgregarCarta(Carta* carta); // agregar carta en posicion random
 	Carta* ObtenerCarta(); // obtener la ultima carta de la pila
 	void Imprimir();

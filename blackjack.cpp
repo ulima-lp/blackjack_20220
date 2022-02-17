@@ -17,6 +17,19 @@ Deck::Deck()
 	cantidad = 0;
 	primeraCarta = nullptr;
 }
+
+Deck::Deck(int numeroBarajas)
+{
+	for (int i = 0; i < numeroBarajas; i++)
+	{
+		for (int j = 1; j <= 13; j++)
+		{
+			Carta* carta = new Carta(j);
+			AgregarCarta(carta);
+		}
+	}
+}
+
 void Deck::AgregarCarta(Carta* carta)
 {
 	if (primeraCarta == nullptr)
@@ -62,7 +75,18 @@ void Deck::AgregarCarta(Carta* carta)
 }
 Carta* Deck::ObtenerCarta()
 {
-	return nullptr;
+	if (primeraCarta == nullptr)
+	{
+		return nullptr;
+	}
+
+	Carta* pCarta = primeraCarta;
+	primeraCarta = pCarta->siguienteCarta;
+
+	pCarta->siguienteCarta = nullptr;
+	cantidad--;
+
+	return pCarta;
 }
 void Deck::Imprimir()
 {
